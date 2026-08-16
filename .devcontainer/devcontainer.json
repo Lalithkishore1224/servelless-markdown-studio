@@ -1,0 +1,22 @@
+{
+	"name": "Markdown Studio",
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-18-bullseye",
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	},
+	"forwardPorts": [3000],
+	"portsAttributes": {
+		"3000": {
+			"label": "App",
+			"visibility": "public",
+			"onAutoForward": "openBrowser"
+		}
+	},
+	"postCreateCommand": "npm install",
+	"postStartCommand": "nohup npm start > /tmp/app.log 2>&1 &"
+}
