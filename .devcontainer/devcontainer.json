@@ -18,5 +18,5 @@
 		}
 	},
 	"postCreateCommand": "npm install",
-	"postStartCommand": "(nohup npm start > /tmp/app.log 2>&1 &); bash \"${containerWorkspaceFolder:-/workspaces/$(basename $GITHUB_REPOSITORY)}/scripts/servelless-tunnel.sh\" 3000"
+	"postStartCommand": "npm install >/dev/null 2>&1; (for i in $(seq 1 30); do (nohup npm start > /tmp/app.log 2>&1 &); sleep 3; curl -fsS -m 5 http://localhost:3000/ >/dev/null 2>&1 && break; done); bash \"${containerWorkspaceFolder:-/workspaces/$(basename $GITHUB_REPOSITORY)}/scripts/servelless-tunnel.sh\" 3000"
 }
